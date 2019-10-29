@@ -1,0 +1,1 @@
+for file in *.obj; do ../libs/bgfx/tools/bin/linux/geometryc -f "$file" -o "../build/assets/meshes/${file%%.*}.bin" --packnormal 1 --barycentric; done

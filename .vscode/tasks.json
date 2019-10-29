@@ -1,0 +1,87 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": [
+                "rm -rf ${command:extension.vscode-wsl-workspaceFolder}/build/ &&",
+                "mkdir  ${command:extension.vscode-wsl-workspaceFolder}/build/ &&",
+                "mkdir ${command:extension.vscode-wsl-workspaceFolder}/build/assets/ &&",
+                "mkdir ${command:extension.vscode-wsl-workspaceFolder}/build/assets/shaders/ &&",
+                "mkdir ${command:extension.vscode-wsl-workspaceFolder}/build/assets/meshes/"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "linux_RadRTSDebug",
+            "type": "shell",
+            "command": [
+                "cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "cmake .. -DCMAKE_BUILD_TYPE=Debug &&",
+                "make &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/shaders/ &&",
+                "make TARGET=4 &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/meshes/ &&",
+                "sh geometryc.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "linux_RadRTSRelease",
+            "type": "shell",
+            "command": [
+                "cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "cmake .. -DCMAKE_BUILD_TYPE=Release &&",
+                "make &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/shaders/ &&",
+                "make TARGET=4 &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/meshes/ &&",
+                "sh geometryc.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "emscripten_RadRTSDebug",
+            "type": "shell",
+            "command": [
+                "cd ${command:extension.vscode-wsl-workspaceFolder}/libs/emsdk &&",
+                "source ./emsdk_env.sh &&",
+                "rm -rf cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "mkdir cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "cmake -DCMAKE_BUILD_TYPE=Debug -G \"Unix Makefiles\" -DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/libs/emsdk/emscripten/1.38.31/cmake/Modules/Platform/Emscripten.cmake .. &&",
+                "make &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/shaders/ &&",
+                "make TARGET=4 &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/meshes/ &&",
+                "sh geometryc.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "emscripten_RadRTSRelease",
+            "type": "shell",
+            "command": [
+                "cd ${command:extension.vscode-wsl-workspaceFolder}/libs/emsdk &&",
+                "source ./emsdk_env.sh &&",
+                "rm -rf cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "mkdir cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "cd ${command:extension.vscode-wsl-workspaceFolder}/build &&",
+                "cmake -DCMAKE_BUILD_TYPE=Release -G \"Unix Makefiles\" -DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/libs/emsdk/emscripten/1.38.31/cmake/Modules/Platform/Emscripten.cmake .. &&",
+                "make &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/shaders/ &&",
+                "make TARGET=4 &&",
+                "cd  ${command:extension.vscode-wsl-workspaceFolder}/meshes/ &&",
+                "sh geometryc.sh"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cmake --build ${command:extension.vscode-wsl-workspaceFolder}/build",
+            "group": "build"
+        }
+    ]
+}
