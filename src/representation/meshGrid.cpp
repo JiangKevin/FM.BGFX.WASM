@@ -23,7 +23,7 @@ MeshGrid createGrid(Mesh& mesh) {
     std::unordered_map<std::string, std::vector<uint32_t>> trianglesForEachIndex;
     // Obtain all the triangles from the mesh
     for(Group& group : mesh.m_groups) {
-        grid._triangles.reserve(grid._triangles.size() + group.m_numIndices/ 3.0f);
+        grid._triangles.reserve(grid._triangles.size() + (size_t)(group.m_numIndices / 3.0f));
         for(uint32_t index = 0, triangleIndex = 0; index < group.m_numIndices; index +=3, ++triangleIndex) {
             uint16_t index0 = group.m_indices[index];
             uint16_t index1 = group.m_indices[index+1];
