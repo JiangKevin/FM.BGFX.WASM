@@ -18,7 +18,7 @@ void init(Material& mat, Material::MaterialCustomContent& matContent) {
 }
 
 void update(Material& mat, Material::MaterialCustomContent& matContent) {
-    Wireframe wireMat = std::get<Wireframe>(matContent);
+    Wireframe& wireMat = std::get<Wireframe>(matContent);
 
     // Update camera position
     bx::Vec3 mainCameraPosition = camera::mainCameraPosition();
@@ -32,7 +32,7 @@ void update(Material& mat, Material::MaterialCustomContent& matContent) {
 }
 
 void destroy(Material& mat, Material::MaterialCustomContent& matContent) {
-    Wireframe wireMat = std::get<Wireframe>(matContent);
+    Wireframe& wireMat = std::get<Wireframe>(matContent);
 
     bgfx::destroy(wireMat.uniformHandle);
 }
