@@ -9,6 +9,7 @@ extern uint32_t     k_height;
 extern std::string  k_gameName;
 extern std::string  k_shaderLocation;
 extern std::string  k_meshLocation;
+extern std::string  k_textureLocation;
 extern bx::Vec3     k_cameraOffset;
 
 extern bx::Vec3     k_empty;

@@ -1,11 +1,14 @@
 #include "constants.hpp"
 #include <bx/math.h>
+
 namespace constants {
+
 uint32_t        k_width             = 1280;
 uint32_t        k_height            = 720;
 std::string     k_gameName          = "GeometricChallenge";
 std::string     k_shaderLocation    = "../../assets/shaders";
 std::string     k_meshLocation      = "../../assets/meshes/";
+std::string     k_textureLocation   = "../../assets/textures/";
 bx::Vec3        k_cameraOffset      = {0.0f, 10.0f, -10.0f};
 
 bx::Vec3        k_empty             = {0.0f, 0.0f, 0.0f};

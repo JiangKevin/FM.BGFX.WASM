@@ -5,6 +5,7 @@
 #include "world.hpp"
 #include "gameObjects/player.hpp"
 #include "materials/wireframe.hpp"
+#include "materials/texture.hpp"
 
 #include "core/scene.hpp"
 #include "core/sceneManager.hpp"
@@ -18,7 +19,8 @@ struct GameScene {
 void init(scene::Scene& scene, GameScene& game) {
     // Create the player
     meshObject::MeshObject meshObject = 
-        meshObject::createMeshInstance("spaceLego.bin", wireframe::createInstance());
+        meshObject::createMeshInstance("texture.bin", createTextureMatInstance("texture.png", "texture.png"));
+
     gameObject::GameObject player = player::createInstance(meshObject);
     scene::addObject(scene, player);
 
