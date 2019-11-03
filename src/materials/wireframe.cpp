@@ -7,16 +7,18 @@
 #include "bgfxExtensions/shader.hpp"
 
 namespace wireframe {
-const char* k_vertexShader = "vs_wf_mesh";
-const char* k_fragmentShader = "fs_wf_mesh";
+static const char* k_vertexShader = "vs_wf_mesh";
+static const char* k_fragmentShader = "fs_wf_mesh";
 
 void init(Material& mat, Material::MaterialCustomContent& matContent) {
+    Wireframe& wireMat = std::get<Wireframe>(matContent);
+
     mat.program = loadProgram(k_vertexShader, k_fragmentShader);
-    mat.uniformHandle = bgfx::createUniform("u_params", bgfx::UniformType::Vec4, NumVec4);
+    wireMat.uniformHandle = bgfx::createUniform("u_params", bgfx::UniformType::Vec4, NumVec4);
 }
 
 void update(Material& mat, Material::MaterialCustomContent& matContent) {
-    Wireframe wireMat = std::get<Wireframe>(matContent);
+    Wireframe& wireMat = std::get<Wireframe>(matContent);
 
     // Update camera position
     bx::Vec3 mainCameraPosition = camera::mainCameraPosition();
@@ -26,11 +28,13 @@ void update(Material& mat, Material::MaterialCustomContent& matContent) {
 
     wireMat._drawEdges = (wireMat._drawMode == DrawMode::WireframeShaded) ? 1.0f : 0.0f;
     // Submit values
-    bgfx::setUniform(mat.uniformHandle, wireMat._params, 3);
+    bgfx::setUniform(wireMat.uniformHandle, wireMat._params, 3);
 }
 
 void destroy(Material& mat, Material::MaterialCustomContent& matContent) {
+    Wireframe& wireMat = std::get<Wireframe>(matContent);
 
+    bgfx::destroy(wireMat.uniformHandle);
 }
 
 // Create the actual objects but don't invoke anything render related

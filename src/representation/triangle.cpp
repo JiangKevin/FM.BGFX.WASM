@@ -8,7 +8,7 @@ bx::Vec3 surfaceNormal(Triangle& triangle) {
     bx::Vec3 a = triangle._verts[0]._vertex;
     bx::Vec3 b = triangle._verts[1]._vertex;
     bx::Vec3 c = triangle._verts[2]._vertex;
-	return bx::cross(bx::sub(b,a), bx::sub(c,a));
+	return bx::normalize(bx::cross(bx::sub(b,a), bx::sub(c,a)));
 }
 
 bx::Vec3 barycentricUVW(Triangle& triangle, const bx::Vec3 &point) {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "bgfx/bgfx.h"
+
 class Material;
 
 // Enum that defines the type of uniform to be passed to a shader
@@ -24,6 +26,8 @@ struct Wireframe {
         };
         float _params[NumVec4 * 4];
     };
+
+    bgfx::UniformHandle uniformHandle = { 0 };
     DrawMode _drawMode;
 };
 

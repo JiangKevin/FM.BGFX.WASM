@@ -30,6 +30,5 @@ void update(Material& mat) {
 
 void destroy(Material& mat) {
     bgfx::destroy(mat.program);
-    bgfx::destroy(mat.uniformHandle);
     mat.customDestroy(mat, mat.content);
 }

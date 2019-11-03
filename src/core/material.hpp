@@ -15,7 +15,6 @@ struct Material {
     
     MaterialCustomContent content = wireframe::Wireframe();
 
-    bgfx::UniformHandle uniformHandle = { 0 };
     bgfx::ProgramHandle program = { 0 };
     uint64_t state = 0;
 
